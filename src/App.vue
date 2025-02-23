@@ -1,6 +1,8 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
 import { invoke } from '@tauri-apps/api/core';
+import { ref } from 'vue';
 
 const greetMsg = ref('');
 const name = ref('');
@@ -12,10 +14,10 @@ async function greet() {
 </script>
 
 <template>
-  <main class="container">
-    <h1>Welcome to Tauri + Vue</h1>
+  <main class="flex flex-col items-center gap-2">
+    <h1 class="text-xl">Welcome to Tauri + Vue</h1>
 
-    <div class="row">
+    <div class="flex flex-row">
       <a href="https://vitejs.dev" target="_blank">
         <img src="/vite.svg" class="logo vite" alt="Vite logo" />
       </a>
@@ -26,11 +28,12 @@ async function greet() {
         <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
       </a>
     </div>
+
     <p>Click on the Tauri, Vite, and Vue logos to learn more.</p>
 
-    <form class="row" @submit.prevent="greet">
-      <input id="greet-input" v-model="name" placeholder="Enter a name..." />
-      <button type="submit">Greet</button>
+    <form class="flex flex-row gap-2 mt-2" @submit.prevent="greet">
+      <Input id="greet-input" v-model="name" placeholder="Enter a name..." />
+      <Button type="submit">Greet</Button>
     </form>
     <p>{{ greetMsg }}</p>
   </main>
